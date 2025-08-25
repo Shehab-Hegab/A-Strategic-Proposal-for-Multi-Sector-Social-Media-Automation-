@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Strategic Proposal for Multi-Sector Social Media Automation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+    <style>
+        /* [RESET & CONFIGURATION] */
+        :root {
+            /* Palette: Slate base, Indigo primary, Emerald accent, Fuchsia highlight */
+            --color-slate-900: #0F172A; /* Base background */
+            --color-slate-800: #1E293B; /* Panel background */
+            --color-slate-700: #334155; /* Border color */
+            --color-slate-400: #94A3B8; /* Body text */
+            --color-slate-200: #E2E8F0; /* Heading text */
+            --color-indigo-500: #6366F1; /* Primary accent */
+            --color-indigo-300: #A5B4FC;
+            --color-emerald-500: #10B981; /* Secondary accent */
+            --color-emerald-300: #6EE7B7;
+            --color-fuchsia-500: #D946EF; /* Highlight accent */
+            
+            /* Typography */
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --font-monospace: 'Fira Code', SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            
+            /* Layout & Effects */
+            --border-radius: 18px;
+            --shadow-soft: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 2rem; /* Offset for sticky header/TOC */
+        }
+
+        body {
+            background-color: var(--color-slate-900);
+            background-image: radial-gradient(circle at 1% 1%, var(--color-slate-800) 0.5px, transparent 0);
+            background-size: 30px 30px;
+            color: var(--color-slate-400);
+            font-family: var(--font-primary);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+        
+        /* [TYPOGRAPHY] */
+        h1, h2, h3, h4 {
+            color: var(--color-slate-200);
+            line-height: 1.3;
+            font-weight: 600;
+        }
+        h1 { font-size: 3rem; background: linear-gradient(90deg, var(--color-indigo-300), var(--color-emerald-300)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem; }
+        h2 { font-size: 2.25rem; color: var(--color-indigo-300); padding-bottom: 0.75rem; border-bottom: 1px solid var(--color-slate-700); margin-bottom: 2rem; margin-top: 1rem; }
+        h3 { font-size: 1.5rem; color: var(--color-emerald-300); margin-bottom: 1rem; margin-top: 2rem; }
+        h4 { font-size: 1.1rem; color: var(--color-slate-200); margin-bottom: 0.5rem; }
+        p, ul, ol { margin-bottom: 1.5rem; }
+        ul, ol { padding-left: 1.5rem; }
+        a { color: var(--color-emerald-300); text-decoration: none; transition: color 0.3s ease; }
+        a:hover { color: var(--color-emerald-500); }
+        strong { color: var(--color-slate-200); font-weight: 600; }
+
+        /* [LAYOUT & CONTAINERS] */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 3rem;
+        }
+        main {
+            padding-top: 2rem;
+        }
+        section {
+            padding-bottom: 3rem;
+            margin-bottom: 3rem;
+        }
+        section:focus {
+            outline: 2px solid var(--color-fuchsia-500);
+            outline-offset: 8px;
+            border-radius: var(--border-radius);
+        }
+
+        /* [GLASSMORPHIC PANELS & CARDS] */
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.6); /* --color-slate-800 with opacity */
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--color-slate-700);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            box-shadow: var(--shadow-soft);
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .card {
+            background: rgba(51, 65, 85, 0.3); /* --color-slate-700 with opacity */
+            border: 1px solid transparent;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-indigo-500);
+        }
+
+        /* [STICKY TABLE OF CONTENTS] */
+        #toc-nav {
+            position: sticky;
+            top: 2rem;
+            align-self: start;
+        }
+        #toc-nav h3 {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+            color: var(--color-slate-400);
+        }
+        #toc-nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        #toc-nav li a {
+            display: block;
+            padding: 0.6rem 1rem;
+            border-left: 2px solid var(--color-slate-700);
+            color: var(--color-slate-400);
+            font-size: 0.95rem;
+            transition: all 0.2s ease-in-out;
+        }
+        #toc-nav li a:hover {
+            color: var(--color-slate-200);
+            border-left-color: var(--color-slate-200);
+            transform: translateX(5px);
+        }
+        #toc-nav li a.active {
+            color: var(--color-fuchsia-500);
+            border-left-color: var(--color-fuchsia-500);
+            font-weight: 600;
+            transform: translateX(5px);
+        }
+
+        /* [CODE BLOCKS] */
+        pre {
+            background-color: #011627; /* A nice dark blue for code */
+            border: 1px solid var(--color-slate-700);
+            border-radius: 12px;
+            padding: 1.5rem;
+            overflow-x: auto;
+            position: relative;
+            margin: 2rem 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        code {
+            font-family: var(--font-monospace);
+            font-size: 0.9em;
+            color: #d6deeb;
+        }
+        .code-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--color-slate-700);
+            color: var(--color-slate-200);
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        
+        /* [BUTTONS] */
+        .btn-container {
+            margin-top: 2rem;
+        }
+        .btn {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--color-indigo-500), var(--color-fuchsia-500));
+            color: #fff;
+            padding: 0.75rem 1.75rem;
+            border-radius: 12px;
+            border: none;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            margin-right: 1rem;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(217, 70, 239, 0.3);
+        }
+        
+        /* [RESPONSIVE DESIGN] */
+        @media (max-width: 1024px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            #toc-nav {
+                position: static;
+                margin-bottom: 3rem;
+            }
+        }
+        @media (max-width: 576px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 1.75rem; }
+            .container { padding: 1rem; }
+            .glass-panel { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- =============== TABLE OF CONTENTS (STICKY) =============== -->
+        <aside id="toc-nav">
+            <nav class="glass-panel">
+                <h3>Table of Contents</h3>
+                <ul>
+                    <li><a href="#cover" class="toc-link">Cover</a></li>
+                    <li><a href="#whatsapp-api" class="toc-link">1. WhatsApp API</a></li>
+                    <li><a href="#templates" class="toc-link">2. Sector Templates</a></li>
+                    <li><a href="#webhooks" class="toc-link">3. Webhooks</a></li>
+                    <li><a href="#meta-dev-tools" class="toc-link">4. Meta Dev Tools</a></li>
+                    <li><a href="#growth-roi" class="toc-link">5. Growth & ROI</a></li>
+                    <li><a href="#analytics" class="toc-link">6. Analytics & KPIs</a></li>
+                    <li><a href="#roadmap" class="toc-link">7. 90-Day Roadmap</a></li>
+                    <li><a href="#appendix" class="toc-link">8. Appendix</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main>
+            <!-- =============== COVER SECTION =============== -->
+            <section id="cover" class="glass-panel" tabindex="0">
+                <h1>A Strategic Proposal for Multi-Sector Social Media Automation</h1>
+                <p style="font-size: 1.25rem; color: var(--color-slate-400);">An Integrated Strategy for Growth Across WhatsApp, Instagram, and Facebook.</p>
+                <div style="margin-top: 2rem; border-top: 1px solid var(--color-slate-700); padding-top: 1.5rem;">
+                    <p><strong>Submitted to:</strong> CRYSTAL POWER INVESTMENTS RECRUITMENT TEAM</p>
+                    <p style="margin-bottom: 0;"><strong>Submitted by:</strong> SHEHAB MOHAMED</p>
+                </div>
+            </section>
+
+            <!-- =============== 1. WHATSAPP API SECTION =============== -->
+            <section id="whatsapp-api" tabindex="0">
+                <h2>1. WhatsApp Business API Setup & Policy</h2>
+                <!-- PASTE YOUR WHATSAPP API CONTENT HERE -->
+                <p>To initiate this strategy, Crystal Power Investments must establish an account on Meta Business Manager and secure a distinct phone number. Partnering with a Business Solution Provider (BSP) is highly recommended over self-hosting. This accelerates the launch timeline, offloads all server maintenance and updates, and empowers your team to concentrate on high-value client solutions rather than technical infrastructure management.</p>
+                <h3>Business Verification & Policy Adherence</h3>
+                <p>Full access to the WhatsApp Business API's features is contingent upon successful business verification. This process, which involves submitting official documents like a business license and completing domain verification, is a critical step in building trust. For Investment Services, where security is paramount, a verified WhatsApp presence reassures clients they are communicating through a secure and official channel, boosting their confidence in our services.</p>
+            </section>
+
+            <!-- =============== 2. TEMPLATES BY SECTOR SECTION =============== -->
+            <section id="templates" tabindex="0">
+                <h2>2. Templates by Sector</h2>
+                <!-- PASTE YOUR TEMPLATES CONTENT HERE -->
+                <p>To engage clients outside the 24-hour service window, pre-approved message templates are essential. These templates will be customized for each industry to streamline operations, reduce inquiries, and build client trust while adhering strictly to Meta's non-promotional content policies.</p>
+                <div class="card-grid">
+                    <div class="card">
+                        <h4>School Catering</h4>
+                        <p><strong>Objective:</strong> Build parent trust and reduce inquiries via proactive order confirmations.</p>
+                    </div>
+                    <div class="card">
+                        <h4>Havana Café</h4>
+                        <p><strong>Objective:</strong> Drive excitement and increase revenue through booking confirmations and promotional offers.</p>
+                    </div>
+                    <div class="card">
+                        <h4>Investment Services</h4>
+                        <p><strong>Objective:</strong> Reinforce professionalism and encourage advisor engagement with secure portfolio updates and meeting links.</p>
+                    </div>
+                </div>
+                <h3>Example: WhatsApp Template (JSON)</h3>
+                <pre>
+<span class="code-badge">JSON</span>
+<code>{
+  "messaging_product": "whatsapp",
+  "to": "CUSTOMER_PHONE_NUMBER",
+  "type": "template",
+  "template": {
+    "name": "investment_update_schedule_v2",
+    "language": { "code": "en_US" },
+    "components": [
+      {
+        "type": "body",
+        "parameters": [
+          { "type": "text", "text": "Client Last Name" },
+          { "type": "text", "text": "Quarter Period" },
+          { "type": "text", "text": "Scheduling Link" }
+        ]
+      }
+    ]
+  }
+}</code>
+                </pre>
+            </section>
+            
+            <!-- =============== 3. WEBHOOKS SECTION =============== -->
+            <section id="webhooks" tabindex="0">
+                <h2>3. Webhooks: The Secure Core of Automation</h2>
+                <!-- PASTE YOUR WEBHOOKS CONTENT HERE -->
+                <p>Our integration is architected around a secure, scalable webhook handler. This endpoint serves as the real-time communication bridge, processing incoming messages through four critical, sequential steps.</p>
+                <div class="card-grid">
+                    <div class="card"><h4>1. Signature Verification</h4><p>Cryptographically validates the <strong>X-Hub-Signature-256</strong> header, ensuring every request is authentic and untampered with.</p></div>
+                    <div class="card"><h4>2. Payload Parsing</h4><p>Securely extracts essential data (e.g., customer number, message content) from the JSON payload with graceful error handling.</p></div>
+                    <div class="card"><h4>3. Logic Routing</h4><p>Directs the request to the correct internal system based on the receiving Business Account ID, enabling modular, industry-specific logic.</p></div>
+                    <div class="card"><h4>4. Acknowledgement</h4><p>Immediately returns an HTTP <strong>200 OK</strong> status to WhatsApp, confirming successful receipt and preventing redundant notifications.</p></div>
+                </div>
+                <h3>Example: Secure Webhook Handler (Python)</h3>
+                <pre>
+<span class="code-badge">Python</span>
+<code># NOTE: This snippet demonstrates core logic, not a full production application.
+import hmac
+import hashlib
+
+def handle_webhook(request_data, signature_header):
+    """Processes incoming WhatsApp messages with signature validation and business routing."""
+    
+    # 1. Security: Verify the request signature
+    if not is_signature_valid(request_data, signature_header):
+        log_security_event("Invalid webhook signature received.")
+        return {"status": "error", "message": "Invalid Signature"}, 403
+
+    # 2. Data Parsing & 3. Business Logic Routing
+    try:
+        business_id = request_data['entry'][0]['id']
+        message_text = request_data['entry'][0]['changes'][0]['value']['messages'][0]['text']['body']
+        
+        if business_id == HAVANA_CAFE_ACCOUNT_ID:
+            handle_havana_cafe_inquiry(message_text)
+        elif business_id == INVESTMENT_SERVICES_ACCOUNT_ID:
+            route_to_human_agent("Investment Inquiry")
+        else:
+            handle_default_inquiry(message_text)
+
+    except (KeyError, IndexError):
+        log_application_error("Malformed webhook payload received.")
+        return {"status": "error", "message": "Malformed Payload"}, 400
+    
+    # 4. Acknowledge Receipt
+    return {"status": "success"}, 200
+
+def is_signature_valid(payload, signature):
+    # Implement HMAC SHA256 validation logic here
+    # ...
+    return True 
+</code>
+                </pre>
+            </section>
+
+            <!-- =============== 4. META DEVELOPER TOOLS SECTION =============== -->
+            <section id="meta-dev-tools" tabindex="0">
+                <h2>4. Meta Developer Tools & Instagram DM Automation</h2>
+                 <!-- PASTE YOUR META DEV TOOLS CONTENT HERE -->
+                <p>Building on the WhatsApp foundation, this strategy leverages the entire Meta ecosystem. We will integrate Facebook and Instagram for lead generation, automated engagement, and precise ROI evaluation. This involves establishing a secure framework in Meta Business Manager, configuring distinct assets for each business vertical, and implementing automated Instagram Direct Messaging systems to deliver prompt, industry-specific responses (e.g., menu links for Havana Café, human handover for Investment Services).</p>
+            </section>
+
+            <!-- =============== 5. GROWTH & ROI SECTION =============== -->
+            <section id="growth-roi" tabindex="0">
+                <h2>5. Growth & ROI: Meta Pixel + Conversions API</h2>
+                <!-- PASTE YOUR GROWTH & ROI CONTENT HERE -->
+                <p>To accurately calculate ROI and optimize client acquisition, we will implement a powerful dual-tracking approach. By combining browser-side events via the <strong>Meta Pixel</strong> with server-side events via the <strong>Conversions API (CAPI)</strong>, we ensure precise data collection that mitigates the impact of ad blockers and iOS privacy updates.</p>
+                <h3>Deduplication via `event_id`</h3>
+                <p>To prevent redundant reporting and ensure data integrity, both Pixel and CAPI events for the same user action will share an identical <strong>`event_id`</strong>. This allows Meta's systems to deduplicate the signals, providing a single, accurate source of truth for conversion tracking.</p>
+            </section>
+
+            <!-- =============== 6. ANALYTICS & KPIS SECTION =============== -->
+            <section id="analytics" tabindex="0">
+                <h2>6. Analytics & KPIs by Sector</h2>
+                <!-- PASTE YOUR ANALYTICS & KPIS CONTENT HERE -->
+                <p>A successful integration is defined by measurable results. Our analytics framework is designed to deliver both operational and strategic insights through a tailored Key Performance Indicator (KPI) framework for each of our three distinct business sectors, ensuring all metrics are relevant and actionable.</p>
+                 <div class="card-grid">
+                    <div class="card"><h4>Havana Café (Hospitality)</h4><ul><li>Instagram Reach & Engagement Rate</li><li>WhatsApp Verified Reservations</li><li>Discount Code Redemption Rate</li></ul></div>
+                    <div class="card"><h4>School Catering (Education)</h4><ul><li>Automated Query Resolution Rate</li><li>Time Spent Answering Questions</li><li>Customer Satisfaction Score (CSAT)</li></ul></div>
+                    <div class="card"><h4>Investment Services (B2B)</h4><ul><li>Average Lead Response Time</li><li>Number of Meetings Arranged</li><li>Client Retention/Follow-up Rate</li></ul></div>
+                </div>
+            </section>
+
+            <!-- =============== 7. 90-DAY ROADMAP SECTION =============== -->
+            <section id="roadmap" tabindex="0">
+                <h2>7. 90-Day Implementation Roadmap</h2>
+                <!-- PASTE YOUR ROADMAP CONTENT HERE -->
+                <p>This roadmap outlines a three-phase approach designed to ensure timely, on-budget project completion while delivering measurable commercial value to Crystal Power Investments every 30 days.</p>
+                <div class="card-grid">
+                    <div class="card"><h4>Phase 1: Foundation (Days 1–30)</h4><p><strong>Deliverable:</strong> A fully verified Meta Business Manager account with all essential WhatsApp message templates approved and ready for use.</p></div>
+                    <div class="card"><h4>Phase 2: Integration (Days 31–60)</h4><p><strong>Deliverable:</strong> A functional, secure webhook deployed to staging, with Meta Pixel and CAPI accurately tracking test events.</p></div>
+                    <div class="card"><h4>Phase 3: Launch (Days 61–90)</h4><p><strong>Deliverable:</strong> A live production system, the pilot ad campaign for Havana Café launched, and v1.0 of the Analytics Dashboard delivering real-time insights.</p></div>
+                </div>
+            </section>
+
+            <!-- =============== 8. APPENDIX SECTION =============== -->
+            <section id="appendix" tabindex="0">
+                <h2>8. Appendix & Resources</h2>
+                <!-- PASTE YOUR APPENDIX CONTENT HERE -->
+                <p>For a deeper technical review, the complete project repository, source code, and additional documentation are available on GitHub.</p>
+                <div class="btn-container">
+                    <a href="https://github.com/Shehab-Hegab/A-Strategic-Proposal-for-Multi-Sector-Social-Media-Automation-" target="_blank" class="btn">View GitHub Repo</a>
+                    <a href="https://github.com/Shehab-Hegab/A-Strategic-Proposal-for-Multi-Sector-Social-Media-Automation-/blob/main/README.md" target="_blank" class="btn">View Raw README.md</a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('main section');
+            const tocLinks = document.querySelectorAll('.toc-link');
+
+            // =============== IntersectionObserver for TOC Highlighting ===============
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    const id = entry.target.getAttribute('id');
+                    const tocLink = document.querySelector(`.toc-link[href="#${id}"]`);
+                    
+                    if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+                        // Remove active class from all links
+                        tocLinks.forEach(link => link.classList.remove('active'));
+                        // Add active class to the current one
+                        if (tocLink) {
+                            tocLink.classList.add('active');
+                        }
+                    }
+                });
+            }, { rootMargin: '-30% 0px -70% 0px', threshold: 0.5 }); // More precise trigger area
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // =============== Keyboard Navigation ===============
+            let currentSectionIndex = -1; // Start before the first section
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+                    e.preventDefault();
+
+                    // Find the current section in view
+                    const rects = Array.from(sections).map(s => ({ section: s, rect: s.getBoundingClientRect() }));
+                    const inView = rects.find(r => r.rect.top >= 0 && r.rect.top < window.innerHeight / 2);
+                    currentSectionIndex = inView ? Array.from(sections).indexOf(inView.section) : 0;
+                    
+                    if (e.key === 'ArrowDown') {
+                        currentSectionIndex = Math.min(currentSectionIndex + 1, sections.length - 1);
+                    } else if (e.key === 'ArrowUp') {
+                        currentSectionIndex = Math.max(currentSectionIndex - 1, 0);
+                    }
+
+                    const targetSection = sections[currentSectionIndex];
+                    if (targetSection) {
+                        targetSection.focus({ preventScroll: true }); // Set focus for accessibility cue
+                        targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
