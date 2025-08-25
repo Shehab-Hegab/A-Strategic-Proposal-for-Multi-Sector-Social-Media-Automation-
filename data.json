@@ -1,0 +1,23 @@
+{
+  "data": [
+    {
+      "event_name": "Lead",
+      "event_time": 1724456400,
+      "event_id": "lead_event_001",
+      "action_source": "website",
+      "user_data": {
+        "em": [
+          "<sha256_hashed_email_address>"
+        ],
+        "ph": [
+          "<sha256_hashed_phone_number>"
+        ]
+      }
+    }
+  ],
+  "test_event_code": "TEST12345"
+}
+
+
+
+

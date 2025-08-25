@@ -1,0 +1,22 @@
+{
+  "messaging_product": "whatsapp",
+  "to": "CUSTOMER_PHONE_NUMBER",
+  "type": "template",
+  "template": {
+    "name": "investment_update_schedule_v2",
+    "language": { "code": "en" },
+    "components": [
+      {
+        "type": "body",
+        "parameters": [
+          { "type": "text", "text": "Client Last Name" },
+          { "type": "text", "text": "Quarter Period" },
+          { "type": "text", "text": "Scheduling Link" }
+        ]
+      }
+    ]
+  }
+}
+
+
+
